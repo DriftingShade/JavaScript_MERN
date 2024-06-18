@@ -1,9 +1,10 @@
 import './App.css'
-
+import Header from './components/Header'
 function App() {
 
   return (
     <>
+    <Header />
     <form action="/process" method="post">
       <div className="form-group">
         <label style={{fontSize: "100px", color: "blue"}} htmlFor="email">Email</label>
