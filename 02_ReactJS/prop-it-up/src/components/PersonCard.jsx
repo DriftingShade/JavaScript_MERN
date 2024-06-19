@@ -1,8 +1,10 @@
 const PersonCard = (props) => {
+
     const {firstName} = props;
     const {lastName} = props;
     const {age} = props;
     const {hairColor} = props;
+    
     return(
         <div>
             <h2>Name: {firstName} {lastName}</h2>
