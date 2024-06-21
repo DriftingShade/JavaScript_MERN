@@ -1,18 +1,28 @@
-import { useState } from 'react'
-import './App.css'
-import PersonCard from './components/PersonCard'
+import { useState } from "react";
+import "./App.css";
+import PersonCard from "./components/PersonCard";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
-      <PersonCard firstName="Shane" lastName="Nosack" age={33} hairColor="Brown"/>
-      <PersonCard firstName="Bob" lastName="Ross" age={82} hairColor="Black"/>
-      <PersonCard firstName="Ciso" lastName="Lobo" age={40} hairColor="Blue"/>
-      <PersonCard firstName="Patrick" lastName="Stewart" age={102} hairColor="Bald"/>
+      <PersonCard
+        firstName="Shane"
+        lastName="Nosack"
+        age={33}
+        hairColor="Brown"
+      />
+      <PersonCard firstName="Bob" lastName="Ross" age={82} hairColor="Black" />
+      <PersonCard firstName="Ciso" lastName="Lobo" age={40} hairColor="Blue" />
+      <PersonCard
+        firstName="Patrick"
+        lastName="Stewart"
+        age={102}
+        hairColor="Bald"
+      />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
