@@ -1,0 +1,94 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.App {
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+input[type="text"], input[type="number"] {
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  width: calc(50% - 20px);
+  margin-bottom: 10px;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+  border-color: #0056b3;
+}
+
+button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  border-radius: 4px;
+  align-self: flex-start;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.BoxDisplay {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.BoxDisplay div {
+  margin: 10px;
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.BoxDisplay button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background-color: rgba(255, 0, 0, 0.7);
+  color: white;
+  border-bottom-left-radius: 4px;
+  cursor: pointer;
+  padding: 2px 5px;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
