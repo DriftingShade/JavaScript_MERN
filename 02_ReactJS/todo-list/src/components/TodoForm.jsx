@@ -19,7 +19,10 @@ function TodoForm({ addTodo }) {
         onChange={(e) => setValue(e.target.value)}
         placeholder="Add a new task!"
       />
-      <button type="submit">Add</button>
+      <br />
+      <button type="submit" className="btn btn-primary">
+        Add
+      </button>
     </form>
   );
 }

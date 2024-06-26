@@ -3,7 +3,7 @@ import TodoItem from "./TodoItem";
 
 function TodoList({ todos, deleteTodo, toggleCompletion }) {
   return (
-    <ul>
+    <ul className="list-group">
       {todos.map((todo, index) => (
         <TodoItem
           key={index}

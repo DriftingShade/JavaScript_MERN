@@ -26,9 +26,9 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>To Do List</h1>
-      <TodoForm addTodo={addTodo} />
+    <div className="container">
+      <h1 className="text-center my-5">To Do List</h1>
+      <TodoForm addTodo={addTodo} className="form-control" />
       <TodoList
         todos={todos}
         deleteTodo={deleteTodo}
