@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import LandingPage from "./views/LandingPage";
 import DisplayDinosaurs from "./views/DisplayDinosaurs";
 import DisplayBoardGames from "./views/DisplayBoardGames";
+import NotFound from "./views/NotFound";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/dinosaurs" element={<DisplayDinosaurs />} />
           <Route path="/boardgames" element={<DisplayBoardGames />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>
