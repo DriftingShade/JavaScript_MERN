@@ -1,21 +1,22 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+// src/App.jsx
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SearchForm from "./components/SearchForm";
 import Home from "./views/Home";
-import People from "./views/People";
+import Character from "./views/Character";
 import Planet from "./views/Planet";
+import Starship from "./views/Starship";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Navbar />
+    <Router>
       <SearchForm />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/people/:id" element={<People />} />
+        <Route path="/people/:id" element={<Character />} />
         <Route path="/planets/:id" element={<Planet />} />
+        <Route path="/starships/:id" element={<Starship />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 };
 

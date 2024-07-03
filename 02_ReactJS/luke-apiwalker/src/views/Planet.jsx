@@ -1,3 +1,4 @@
+// src/pages/Planet.jsx
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -14,7 +15,12 @@ const Planet = () => {
       .catch(() => setError(true));
   }, [id]);
 
-  if (error) return <p>These aren't the droids you're looking for</p>;
+  if (error)
+    return (
+      <div>
+        <p>These aren't the droids you're looking for</p>
+      </div>
+    );
 
   return (
     <div>
