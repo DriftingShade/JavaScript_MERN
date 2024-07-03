@@ -26,9 +26,6 @@ const SearchForm = () => {
           <option value="people">People</option>
           <option value="planets">Planets</option>
           <option value="starships">Starships</option>
-          <option value="vehicles">Vehicles</option>
-          <option value="species">Species</option>
-          <option value="films">Films</option>
         </select>
       </div>
       <div className="form-group mr-2">
