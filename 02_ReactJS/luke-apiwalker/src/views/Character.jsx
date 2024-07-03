@@ -1,7 +1,7 @@
-// src/pages/Character.jsx
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import droidsImage from "../assets/Droids.png";
 
 const Character = () => {
   const { id } = useParams();
@@ -10,6 +10,10 @@ const Character = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    setCharacter(null);
+    setHomeworld(null);
+    setError(false);
+
     axios
       .get(`https://swapi.dev/api/people/${id}`)
       .then((response) => {
@@ -22,30 +26,42 @@ const Character = () => {
 
   if (error)
     return (
-      <div>
-        <p>These aren't the droids you're looking for</p>
-        <img src="https://path/to/obi-wan-kenobi.jpg" alt="Obi-Wan Kenobi" />
+      <div className="container mt-5">
+        <div className="card">
+          <div className="card-body text-center">
+            <p className="card-text">
+              These aren't the droids you're looking for
+            </p>
+            <img src={droidsImage} alt="Obi-Wan Kenobi" />
+          </div>
+        </div>
       </div>
     );
 
   return (
-    <div>
+    <div className="container mt-5 text-center">
       {character && (
-        <>
-          <h1>{character.name}</h1>
-          <p>Height: {character.height} cm</p>
-          <p>Hair Color: {character.hair_color}</p>
-          <p>Eye Color: {character.eye_color}</p>
-          <p>Skin Color: {character.skin_color}</p>
-          {homeworld && (
-            <>
-              <p>Homeworld: {homeworld.name}</p>
-              <Link to={`/planets/${homeworld.url.match(/\/(\d+)\/$/)[1]}`}>
-                Homeworld
-              </Link>
-            </>
-          )}
-        </>
+        <div className="card">
+          <div className="card-body">
+            <h1 className="card-title">{character.name}</h1>
+            <p className="card-text">Height: {character.height} cm</p>
+            <p className="card-text">Hair Color: {character.hair_color}</p>
+            <p className="card-text">Eye Color: {character.eye_color}</p>
+            <p className="card-text">Skin Color: {character.skin_color}</p>
+            {homeworld && (
+              <>
+                <p className="card-text">
+                  <Link
+                    to={`/planets/${homeworld.url.match(/\/(\d+)\/$/)[1]}`}
+                    className="btn btn-link"
+                  >
+                    Homeworld: {homeworld.name}
+                  </Link>
+                </p>
+              </>
+            )}
+          </div>
+        </div>
       )}
     </div>
   );
