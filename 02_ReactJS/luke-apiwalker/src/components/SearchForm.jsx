@@ -31,6 +31,7 @@ const SearchForm = () => {
       <div className="form-group mr-2">
         <label className="mr-2">ID:</label>
         <input
+          className="form-control ms-3"
           type="number"
           value={id}
           onChange={(e) => setId(e.target.value)}
