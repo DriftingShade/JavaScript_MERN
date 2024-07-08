@@ -3,18 +3,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import droidsImage from "../assets/Droids.png";
 
-const Planet = () => {
+const Starship = () => {
   const { id } = useParams();
-  const [planet, setPlanet] = useState(null);
+  const [starship, setStarship] = useState(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    setPlanet(null);
     setError(false);
-
+    setStarship(null);
     axios
-      .get(`https://swapi.dev/api/planets/${id}`)
-      .then((response) => setPlanet(response.data))
+      .get(`https://swapi.dev/api/starships/${id}`)
+      .then((response) => setStarship(response.data))
       .catch(() => setError(true));
   }, [id]);
 
@@ -34,14 +33,16 @@ const Planet = () => {
 
   return (
     <div className="container mt-5 text-center">
-      {planet && (
+      {starship && (
         <div className="card">
           <div className="card-body">
-            <h1 className="card-title">{planet.name}</h1>
-            <p className="card-text">Climate: {planet.climate}</p>
-            <p className="card-text">Terrain: {planet.terrain}</p>
-            <p className="card-text">Surface Water: {planet.surface_water}</p>
-            <p className="card-text">Population: {planet.population}</p>
+            <h1 className="card-title">{starship.name}</h1>
+            <p className="card-text">Model: {starship.model}</p>
+            <p className="card-text">Manufacturer: {starship.manufacturer}</p>
+            <p className="card-text">
+              Cost in Credits: {starship.cost_in_credits}
+            </p>
+            <p className="card-text">Length: {starship.length}</p>
           </div>
         </div>
       )}
@@ -49,4 +50,4 @@ const Planet = () => {
   );
 };
 
-export default Planet;
+export default Starship;

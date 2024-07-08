@@ -1,33 +1,47 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SearchForm = () => {
   const [resource, setResource] = useState("people");
   const [id, setId] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate(`/${resource}/${id}`);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-75 mx-auto text-center">
-      <label className="form-label">
-        Search for:
-        <select className="form-select ms-2" value={resource} onChange={(e) => setResource(e.target.value)}>
+    <form
+      onSubmit={handleSubmit}
+      className="d-flex justify-content-center mt-4"
+    >
+      <div className="form-group mr-2">
+        <label className="mr-2">Search for:</label>
+        <select
+          value={resource}
+          onChange={(e) => setResource(e.target.value)}
+          className="form-control"
+        >
           <option value="people">People</option>
           <option value="planets">Planets</option>
+          <option value="starships">Starships</option>
         </select>
-      </label>
-      <label className="form-label"> 
-        ID:
+      </div>
+      <div className="form-group mr-2">
+        <label className="mr-2">ID:</label>
         <input
           className="form-control ms-3"
           type="number"
           value={id}
           onChange={(e) => setId(e.target.value)}
+          className="form-control"
           placeholder="Enter ID"
         />
-      </label>
-      <button type="submit" className="btn btn-primary ms-4">Search</button>
+      </div>
+      <button type="submit" className="btn btn-primary">
+        Search
+      </button>
     </form>
   );
 };
