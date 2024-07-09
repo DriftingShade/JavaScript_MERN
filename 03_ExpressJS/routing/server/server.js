@@ -25,6 +25,41 @@ app.post("/api/toys", (req, res) => {
   res.json(toys);
 });
 
+app.get("/api/toys/:id", (req, res) => {
+  console.log(req.params.id);
+  const getToyById = toys.find((toy) => toy.id == req.params.id);
+  res.json(getToyById);
+});
+
+app.put("/api/toys/:id", (req, res) => {
+  toys.forEach((toy, idx) => {
+    if (toy.id == req.params.id) {
+      toy = { ...toy, ...req.body };
+      toys[idx] = toy;
+    }
+  });
+  const updatedToy = toys.find((toy) => toy.id == req.params.id);
+  res.json(updatedToy);
+});
+
+app.patch("/api/toys/:id", (req, res) => {
+  toys.forEach((toy, idx) => {
+    if (toy.id == req.params.id) {
+      toy.toyName = req.body.toyName;
+      toy.toyMaker = req.body.toyMaker;
+    }
+  });
+  const updatedToy = toys.find((toy) => toy.id == req.params.id);
+  res.json(updatedToy);
+});
+
+app.delete("/api/toys/:id", (req, res) => {
+  const toyId = req.params.id;
+  const index = toys.findIndex((toy) => toy.id == toyId);
+  toys.splice(index, 1);
+  res.json(toys);
+});
+
 app.listen(port, () => {
   console.log("Example app is listening on port 8000!");
 });
