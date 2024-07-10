@@ -1,4 +1,4 @@
-import Book from "../models/book.model";
+import Book from "../models/book.model.js";
 
 async function addBook(req, res) {
   try {
@@ -58,4 +58,4 @@ async function deleteOneBook(req, res) {
   }
 }
 
-export { createBook, getAllBooks, getOneBook, updateOneBook, deleteOneBook };
+export { addBook, getAllBooks, getOneBook, updateOneBook, deleteOneBook };
