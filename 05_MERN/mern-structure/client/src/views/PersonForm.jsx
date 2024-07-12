@@ -83,18 +83,18 @@ const PersonForm = () => {
           onChange={ageHandler}
         />
 
-        <label htmlFor="celebrityStatus" className="form-check-label">
+        <label htmlFor="celebrityStatus" className="form-check-label mt-3">
           Celebrity?
         </label>
         <input
-          className="form-check-input"
+          className="form-check-input mx-3 my-3"
           type="checkbox"
           id="celebrityStatus"
           value={celebrityStatus}
           onChange={celebrityStatusHandler}
         />
 
-        <button className="btn btn-primary form-control">Submit</button>
+        <button className="btn btn-primary form-control my-2">Submit</button>
       </form>
     </div>
   );
