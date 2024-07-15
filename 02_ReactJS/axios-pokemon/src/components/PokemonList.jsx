@@ -15,9 +15,9 @@ const PokemonList = () => {
       });
   }, []);
 
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
+  // const capitalizeFirstLetter = (string) => {
+  //   return string.charAt(0).toUpperCase() + string.slice(1);
+  // };
 
   return (
     <div>
@@ -25,8 +25,8 @@ const PokemonList = () => {
       <h3 className="my-3">Gotta Catch 'Em All!</h3>
       <ul className="list-group my-5">
         {pokemon.map((poke, index) => (
-          <li key={index} className="list-group-item">
-            {capitalizeFirstLetter(poke.name)}
+          <li key={index} className="list-group-item text-capitalize">
+            {poke.name}
           </li>
         ))}
       </ul>
