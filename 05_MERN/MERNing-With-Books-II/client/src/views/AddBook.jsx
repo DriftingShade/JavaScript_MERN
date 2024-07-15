@@ -8,6 +8,7 @@ const AddBook = () => {
   const [author, setAuthor] = useState("");
   const [pageCount, setPageCount] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +16,8 @@ const AddBook = () => {
     axios
       .post("http://localhost:8000/api/books", newBook)
       .then(() => navigate("/catalog"))
-      .catch((error) => console.log(error));
+      .catch((err) => setErrors(err.response.data.errors));
+    console.log(errors);
   };
 
   return (
@@ -23,6 +25,7 @@ const AddBook = () => {
       <h1>Add a Book</h1>
       <form onSubmit={handleSubmit}>
         <label>Title</label>
+        {errors.title && <p style={{ color: "red" }}>{errors.title.message}</p>}
         <input
           type="text"
           value={title}
@@ -30,6 +33,9 @@ const AddBook = () => {
           required
         />
         <label>Author Name</label>
+        {errors.author && (
+          <p style={{ color: "red" }}>{errors.author.message}</p>
+        )}
         <input
           type="text"
           value={author}
@@ -37,6 +43,7 @@ const AddBook = () => {
           required
         />
         <label>Page Count</label>
+        {errors.pages && <p style={{ color: "red" }}>{errors.pages.message}</p>}
         <input
           type="number"
           value={pageCount}
@@ -44,6 +51,9 @@ const AddBook = () => {
           required
         />
         <label>Is it Available?</label>
+        {errors.isAvailable && (
+          <p style={{ color: "red" }}>{errors.isAvailable.message}</p>
+        )}
         <input
           type="checkbox"
           checked={isAvailable}

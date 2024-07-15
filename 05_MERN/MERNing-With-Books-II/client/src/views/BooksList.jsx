@@ -20,9 +20,9 @@ const BooksList = () => {
           <tr>
             <th>Title</th>
             <th>Author</th>
-            <th>Page Count</th>
+            <th>Pages</th>
             <th>Available</th>
-            <th>Book Page</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +31,10 @@ const BooksList = () => {
               <td>{book.title}</td>
               <td>{book.author}</td>
               <td>{book.pages}</td>
-              <td>{book.isAvailable ? "Yes" : "No"}</td>
+              <td>
+                {book.isAvailable ? "Yes" : "No"} |{" "}
+                <Link to={`/books/${book._id}/update`}>Edit</Link>
+              </td>
               <td>
                 <Link to={`/books/${book._id}/details`}>
                   <button>Book Details</button>

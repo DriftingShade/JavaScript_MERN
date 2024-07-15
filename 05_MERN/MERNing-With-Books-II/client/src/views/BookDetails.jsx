@@ -25,7 +25,7 @@ const BookDetails = () => {
     <div className="book-details">
       <h1>{book.title}</h1>
       <p>By {book.author}</p>
-      <p>Page count: {book.pages}</p>
+      <p>Pages: {book.pages}</p>
       <p>{book.isAvailable ? "Available for borrowing" : "Not available"}</p>
       {book.isAvailable && (
         <button onClick={handleBorrow} className="borrow-button">
