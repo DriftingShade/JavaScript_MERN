@@ -4,20 +4,39 @@ import axios from "axios";
 
 const AddBook = () => {
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [pageCount, setPageCount] = useState("");
-  const [isAvailable, setIsAvailable] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [formData, setFormData] = useState({
+    title: "",
+    author: "",
+    pageCount: "",
+    isAvailable: false,
+    errors: {},
+  });
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newBook = { title, author, pages: pageCount, isAvailable };
+    const newBook = {
+      title: formData.title,
+      author: formData.author,
+      pages: formData.pageCount,
+      isAvailable: formData.isAvailable,
+    };
     axios
       .post("http://localhost:8000/api/books", newBook)
       .then(() => navigate("/catalog"))
-      .catch((err) => setErrors(err.response.data.errors));
-    console.log(errors);
+      .catch((err) =>
+        setFormData((prevData) => ({
+          ...prevData,
+          errors: err.response.data.errors,
+        }))
+      );
   };
 
   return (
@@ -25,39 +44,47 @@ const AddBook = () => {
       <h1>Add a Book</h1>
       <form onSubmit={handleSubmit}>
         <label>Title</label>
-        {errors.title && <p style={{ color: "red" }}>{errors.title.message}</p>}
+        {formData.errors.title && (
+          <p style={{ color: "red" }}>{formData.errors.title.message}</p>
+        )}
         <input
           type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
           required
         />
         <label>Author Name</label>
-        {errors.author && (
-          <p style={{ color: "red" }}>{errors.author.message}</p>
+        {formData.errors.author && (
+          <p style={{ color: "red" }}>{formData.errors.author.message}</p>
         )}
         <input
           type="text"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
+          name="author"
+          value={formData.author}
+          onChange={handleChange}
           required
         />
         <label>Page Count</label>
-        {errors.pages && <p style={{ color: "red" }}>{errors.pages.message}</p>}
+        {formData.errors.pages && (
+          <p style={{ color: "red" }}>{formData.errors.pages.message}</p>
+        )}
         <input
           type="number"
-          value={pageCount}
-          onChange={(e) => setPageCount(e.target.value)}
+          name="pageCount"
+          value={formData.pageCount}
+          onChange={handleChange}
           required
         />
         <label>Is it Available?</label>
-        {errors.isAvailable && (
-          <p style={{ color: "red" }}>{errors.isAvailable.message}</p>
+        {formData.errors.isAvailable && (
+          <p style={{ color: "red" }}>{formData.errors.isAvailable.message}</p>
         )}
         <input
           type="checkbox"
-          checked={isAvailable}
-          onChange={(e) => setIsAvailable(e.target.checked)}
+          name="isAvailable"
+          checked={formData.isAvailable}
+          onChange={handleChange}
         />
         <button type="submit">Add Book</button>
       </form>
