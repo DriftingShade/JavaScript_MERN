@@ -12,6 +12,18 @@ const CompanyList = () => {
       .catch((error) => console.log(error));
   }, []);
 
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:8000/api/companies/${id}`)
+      .then(() => {
+        // Remove the deleted company from the state
+        setCompanies((prevCompanies) =>
+          prevCompanies.filter((company) => company._id !== id)
+        );
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div>
       <h1>Company List</h1>
@@ -21,6 +33,7 @@ const CompanyList = () => {
             <th>Name</th>
             <th># Of Employees</th>
             <th>Manager Name</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +46,12 @@ const CompanyList = () => {
                 <Link to={`/companies/${company._id}/details`}>
                   <button>Company Details</button>
                 </Link>
+                <Link to={`/companies/${company._id}/update`}>
+                  <button>Edit</button>
+                </Link>
+                <button onClick={() => handleDelete(company._id)}>
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

@@ -14,18 +14,11 @@ const CompanyDetails = () => {
       .catch((error) => console.log(error));
   }, [id]);
 
-  const handleBorrow = () => {
-    axios
-      .delete(`http://localhost:8000/api/companies/${id}`)
-      .then(() => navigate("/home"))
-      .catch((error) => console.log(error));
-  };
-
   return company ? (
     <div className="book-details">
       <h1>{company.name}</h1>
-      <p>By {company.numOfEmployees}</p>
-      <p>Pages: {company.manager}</p>
+      <p>Number Of Employees: {company.numOfEmployees}</p>
+      <p>Manager Name: {company.manager}</p>
     </div>
   ) : (
     <p>Loading...</p>

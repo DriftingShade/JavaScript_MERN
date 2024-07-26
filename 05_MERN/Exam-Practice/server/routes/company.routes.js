@@ -12,7 +12,7 @@ const router = Router();
 router.route("/companies").get(getAllCompanies).post(addCompany);
 
 router
-  .route("companies/:id")
+  .route("/companies/:id")
   .get(getOneCompany)
   .put(updateOneCompany)
   .delete(deleteOneCompany);
