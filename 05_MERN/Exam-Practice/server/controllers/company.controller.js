@@ -12,7 +12,8 @@ async function addCompany(req, res) {
 
 async function getAllCompanies(req, res) {
   try {
-    const allCompanies = await Company.find();
+    const filters = req.query;
+    const allCompanies = await Company.find(filters);
     res.json(allCompanies);
   } catch (error) {
     console.log(error);

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { addCompany } from "../services/companyService";
 
 const AddCompany = () => {
   const navigate = useNavigate();
@@ -26,8 +26,7 @@ const AddCompany = () => {
       numOfEmployees: formData.numOfEmployees,
       manager: formData.manager,
     };
-    axios
-      .post("http://localhost:8000/api/companies", newCompany)
+    addCompany(newCompany)
       .then(() => navigate("/home"))
       .catch((err) =>
         setFormData((prevData) => ({

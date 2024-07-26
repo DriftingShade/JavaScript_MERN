@@ -7,11 +7,13 @@ const CompanySchema = new Schema(
       required: [true, "Name is required"],
       minlength: [2, "Name must be at least 2 characters long"],
       maxlength: [255, "Name must be less than 255 characters long"],
+      match: [/^[a-zA-Z\s]+$/, "Name can only contain letters and spaces"],
     },
     numOfEmployees: {
       type: Number,
       required: [true, "Number of Employees is required"],
       min: [5, "Must have at least 5 Employees"],
+      max: [10000, "Must have fewer than 10000 Employees"],
     },
     manager: {
       type: String,

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import { getCompanyById, updateCompany } from "../services/companyService";
 
 const UpdateCompany = () => {
   const { id } = useParams();
@@ -13,10 +13,8 @@ const UpdateCompany = () => {
   });
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/companies/${id}`)
-      .then((response) => {
-        const company = response.data;
+    getCompanyById(id)
+      .then((company) => {
         setFormData({
           name: company.name,
           numOfEmployees: company.numOfEmployees,
@@ -42,8 +40,7 @@ const UpdateCompany = () => {
       numOfEmployees: formData.numOfEmployees,
       manager: formData.manager,
     };
-    axios
-      .put(`http://localhost:8000/api/companies/${id}`, updatedCompany)
+    updateCompany(id, updatedCompany)
       .then(() => navigate("/home"))
       .catch((err) =>
         setFormData((prevData) => ({

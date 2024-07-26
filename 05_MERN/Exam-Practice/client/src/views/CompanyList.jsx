@@ -1,28 +1,49 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { getAllCompanies, deleteCompany } from "../services/companyService";
 
 const CompanyList = () => {
-  const [companies, setCompanies] = useState([]);
+  const [state, setState] = useState({
+    companies: [],
+    loading: true,
+    error: null,
+  });
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/companies")
-      .then((response) => setCompanies(response.data))
-      .catch((error) => console.log(error));
+    getAllCompanies()
+      .then((companies) => {
+        setState({ companies, loading: false, error: null });
+      })
+      .catch((error) => {
+        setState({ companies: [], loading: false, error: error.message });
+      });
   }, []);
 
   const handleDelete = (id) => {
-    axios
-      .delete(`http://localhost:8000/api/companies/${id}`)
+    deleteCompany(id)
       .then(() => {
-        // Remove the deleted company from the state
-        setCompanies((prevCompanies) =>
-          prevCompanies.filter((company) => company._id !== id)
-        );
+        setState((prevState) => ({
+          ...prevState,
+          companies: prevState.companies.filter(
+            (company) => company._id !== id
+          ),
+        }));
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setState((prevState) => ({
+          ...prevState,
+          error: error.message,
+        }));
+      });
   };
+
+  if (state.loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (state.error) {
+    return <div>Error: {state.error}</div>;
+  }
 
   return (
     <div>
@@ -37,7 +58,7 @@ const CompanyList = () => {
           </tr>
         </thead>
         <tbody>
-          {companies.map((company) => (
+          {state.companies.map((company) => (
             <tr key={company._id}>
               <td>{company.name}</td>
               <td>{company.numOfEmployees}</td>
