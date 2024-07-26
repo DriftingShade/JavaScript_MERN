@@ -7,7 +7,7 @@ const CompanyList = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/books")
+      .get("http://localhost:8000/api/companies")
       .then((response) => setCompanies(response.data))
       .catch((error) => console.log(error));
   }, []);
